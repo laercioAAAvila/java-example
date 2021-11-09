@@ -20,22 +20,27 @@ public class Conta {
     }
 
     //money withdraw
-    public void saque (double valor){
+    public void saque (float valor){
         if (this.saldo >= valor){
             this.saldo = this.saldo - valor;
+            System.out.println("Valor: " + valor);
+            System.out.println("Saque feito com sucesso!\n");
         }else {
-            System.out.println("Saldo insuficiente!");
+            System.out.println("Saldo insuficiente!\n");
         }
     }
     //money deposit
     public void deposito (double valor){
         this.saldo = this.saldo+valor;
+        System.out.println("Valor: " + valor);
+        System.out.println("Deposito feito com sucesso!\n");
     }
+
     public void conta(){
         System.out.println("Número da conta: "+this.numero);
         System.out.println("Titular da conta: "+this.titular);
         System.out.println("Número da Agencia: "+this.agencia);
-        System.out.println("Saldo: R$"+this.saldo);
+        System.out.printf("Saldo: R$ %.2f %n",this.saldo);
         if (this.status==true)
             System.out.println("Estado da conta: Ativa!");
         else
@@ -47,10 +52,12 @@ public class Conta {
     public void transferencia(Conta contaDestino, double valor){
         if (this.saldo >= valor){
             this.saldo = this.saldo - valor;
-            contaDestino.deposito(valor);
-            System.out.println("Transferência feita com Sucesso!");
+            contaDestino.saldo = contaDestino.saldo+valor;
+            System.out.println("Valor: " + valor);
+            System.out.println("Transferência feita com Sucesso!\n");
         }else {
-            System.out.println("Saldo insuficiente!");
+            System.out.println("Valor: " + valor);
+            System.out.println("Saldo insuficiente!\n");
         }
 
     }
