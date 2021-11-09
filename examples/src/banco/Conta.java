@@ -6,10 +6,20 @@ public class Conta {
     private String titular;
     private int agencia;
     private double saldo;
+    private static int nConta = 0;
     //status: true = Active or false = Deactivate
     private boolean status;
 
-    //withdraw money
+    public Conta(String titular) {
+        nConta++;
+        this.numero = nConta;
+        this.titular = titular;
+        this.agencia = 0001;
+        this.saldo = 0;
+        this.status = true;
+    }
+
+    //money withdraw
     public void saque (double valor){
         if (this.saldo >= valor){
             this.saldo = this.saldo - valor;
@@ -17,9 +27,32 @@ public class Conta {
             System.out.println("Saldo insuficiente!");
         }
     }
-    //deposit money
-    public void desposit (double valor){
+    //money deposit
+    public void deposito (double valor){
         this.saldo = this.saldo+valor;
+    }
+    public void conta(){
+        System.out.println("Número da conta: "+this.numero);
+        System.out.println("Titular da conta: "+this.titular);
+        System.out.println("Número da Agencia: "+this.agencia);
+        System.out.println("Saldo: R$"+this.saldo);
+        if (this.status==true)
+            System.out.println("Estado da conta: Ativa!");
+        else
+            System.out.println("Estado da conta: Desativada!");
+        System.out.println("\n");
+    }
+
+    //money transfer
+    public void transferencia(Conta contaDestino, double valor){
+        if (this.saldo >= valor){
+            this.saldo = this.saldo - valor;
+            contaDestino.deposito(valor);
+            System.out.println("Transferência feita com Sucesso!");
+        }else {
+            System.out.println("Saldo insuficiente!");
+        }
+
     }
 
     public int getNumero() {
