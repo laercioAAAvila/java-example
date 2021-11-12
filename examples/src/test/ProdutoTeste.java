@@ -11,13 +11,14 @@ public class ProdutoTeste {
         String xmlEsperado = "<produto>\n"+
                                 "  <nome>geladeira</nome>\n"+
                                 "  <preco>1000.0</preco>\n"+
-                                "  <descricao>geladeira duas portas</descricao>\n"+
+                                "  <descrição>geladeira duas portas</descrição>\n"+
                             "</produto>";
 
 
                 Produto geladeira = new Produto("geladeira", 1000.0,"geladeira duas portas");
         XStream xStream = new XStream();
         xStream.alias("produto", Produto.class);
+        xStream.aliasField("descrição",Produto.class,"descricao");
         String xmlGerado = xStream.toXML(geladeira);
 
         assertEquals(xmlEsperado,xmlGerado);
