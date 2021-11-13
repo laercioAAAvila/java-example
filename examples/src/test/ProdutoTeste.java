@@ -15,14 +15,15 @@ public class ProdutoTeste {
                             "</produto>";
 
 
-                Produto geladeira = new Produto(1588,"geladeira", 1000.0,"geladeira duas portas");
+                Produto geladeira = new Produto("geladeira", 1000.0,"geladeira duas portas",1588);
+
         XStream xStream = new XStream();
         xStream.alias("produto", Produto.class);
         xStream.aliasField("descrição",Produto.class,"descricao");
         xStream.useAttributeFor(Produto.class, "codigo");
         String xmlGerado = xStream.toXML(geladeira);
 
-        assertEquals(xmlEsperado,xmlGerado);
 
+        assertEquals(xmlEsperado,xmlGerado);
     }
 }
